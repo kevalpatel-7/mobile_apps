@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="serial_fix" model="res.groups">
+            <field name="name">Serial Fix</field>
+            <field name="category_id" ref="base.module_category_serial_return"/>
+        </record>
+
+        <record id="serial_purchase" model="res.groups">
+            <field name="name">Serial Return Purchase</field>
+            <field name="category_id" ref="base.module_category_serial_return"/>
+        </record>
+
+        <record id="serial_sale" model="res.groups">
+            <field name="name">Serial Return Sale</field>
+            <field name="category_id" ref="base.module_category_serial_return"/>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+   
+
+
+
+
+   <record id="user_data_crypto_data_id" model="ir.ui.view">
+            <field name="name">Crypto Data Form</field>
+            <field name="model">crypto.data</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <header>
+                         <button name='calculate_price_date' type="object" string="Get Prices" class="test_js"/>
+<!--                          <button name="view_graph" type="object" string="Open"/>
+ -->
+                    </header>
+
+                    <sheet>
+
+
+                    <div class="oe_button_box" name="button_box">
+                        
+                        <button name="view_graph"
+                            type="object"
+                            class="oe_stat_button"
+                            icon="fa-signal"
+                            string="View"
+                            >
+                        </button>
+
+                   
+                    </div>
+
+                    <group>
+                        <group>
+                             
+                            <field name="name"  />
+                            <field name="price" widget="monetary" />
+                            <field name="price_date"  />
+                            <field name="market_cap"  />
+                            <field name="market_cap_dominance"/>
+                            <field name="rank"/>
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="currency_id" invisible="1"/>
+
+                        </group>
+
+                        <group>
+                            <field name="price_ids">
+                                <tree>
+                                    <field name="price_date"  />
+
+                                    <field name="price"  />
+                                </tree>
+                            </field>
+                        </group>
+
+                    </group>
+                    </sheet>
+               
+                </form>
+            </field>
+        </record>
+
+
+     <record id="user_data_crypto_data_id_tree" model="ir.ui.view">
+            <field name="name">Crypto Data Tree</field>
+            <field name="model">crypto.data</field>
+            <field name="arch" type="xml">
+                <tree>
+                    
+                           <field name="name"  />
+                            <field name="price" widget="monetary" />
+                            <field name="price_date"  />
+                            <field name="market_cap"  />
+                            <field name="market_cap_dominance"/>
+                            <field name="rank"/>
+                                     <field name="currency_id" invisible="1"/>
+              
+                    
+                </tree>
+            </field>
+        </record>
+
+
+     <record model="ir.ui.view" id="viewcrypto_graph">
+            <field name="name">crypto.order.graph</field>
+            <field name="model">crypto.data</field>
+            <field name="arch" type="xml">
+                <graph string="Crypto Data" sample="2">
+                    <field name="name"/>
+                    <field name="price_date"/>
+                    <field name="price" type="measure"/>
+                </graph>
+            </field>
+        </record>
+    
+
+
+   
+
+    <record id="crypto_datq_action_stored" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Crypto User Data</field>
+            <field name="res_model">crypto.data</field>
+            <field name="view_mode">tree,form</field>
+            
+            <field name="target">current</field>
+        </record>
+
+
+     <record id="crypto_order_action_view_order_graph" model="ir.actions.act_window.view">
+            <field name="sequence" eval="6"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="viewcrypto_graph"/>
+            <field name="act_window_id" ref="crypto_datq_action_stored"/>
+        </record>
+
+
+    <record id="menu_crypto_data_mul" model="ir.ui.menu">
+            <field name="name">Crypto Data</field>
+            <field name="sequence" eval="100" />
+            <field name="action" ref="crypto_datq_action_stored" />
+            <field name="parent_id" ref="crypto_sub_menu" />
+        </record>
+
+
+
+
+<record model="ir.ui.view" id="viewcrypto_graph_date">
+            <field name="name">crypto.order.graph</field>
+            <field name="model">crypto.data.date</field>
+            <field name="arch" type="xml">
+                <graph string="Crypto Data" sample="2">
+                    <field name="price_date"/>
+                    <field name="price" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
+
+ <record model="ir.ui.view" id="search_graph_lot_filter">
+        <field name="name">Crypto Lots Filter</field>
+        <field name="model">crypto.data.date</field>
+        <field name="arch" type="xml">
+            <search string="Product Lots Filter">
+                
+                <group expand="0" string="Group By">
+                    <filter name="group_by_date" string="Date" domain="[]" context="{'group_by':'price_date:day'}" />
+                   
+                </group>
+            </search>
+        </field>
+    </record>
+
+
+  <record id="date_action_view_order_graph_date" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Crypto Data</field>
+            <field name="res_model">crypto.data.date</field>
+            <field name="view_mode">graph</field>
+            
+            <field name="target">current</field>
+        </record>
+
+
+
+ <record id="crypto_order_action_view_order_graph_date" model="ir.actions.act_window.view">
+            <field name="sequence" eval="6"/>
+            <field name="view_mode">graph</field>
+            <field name="view_id" ref="viewcrypto_graph_date"/>
+            <field name="act_window_id" ref="date_action_view_order_graph_date"/>
+        </record>
+
+   
+</odoo>

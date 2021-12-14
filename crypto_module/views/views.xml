@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+   
+
+
+
+
+   <record id="user_data_crypto_form_id" model="ir.ui.view">
+            <field name="name">User Data Form</field>
+            <field name="model">user.data.crypto</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <group>
+                            <field name="experience"  />
+                            <field name="risk_amount" widget="monetary" />
+                            <field name="start_date"  />
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+
+                        <group>
+                            <field name="all_data"/>
+                            <field name="end_date"  />
+
+                        </group>
+
+                    </group>
+                    
+                <footer>
+                    
+                    <button name="submit_data" string="Submit" type="object"/>
+                </footer>
+                </form>
+            </field>
+        </record>
+
+
+     <!-- <record id="user_data_crypto_tree_id" model="ir.ui.view">
+            <field name="name">User Data Tree</field>
+            <field name="model">user.data.crypto</field>
+            <field name="arch" type="xml">
+                <tree>
+                    
+                            <field name="experience"  />
+                            <field name="risk_amount"  />
+                            <field name="start_date"  />
+                            <field name="end_date"  />
+                            <field name="code"/>
+                       
+                    
+                </tree>
+            </field>
+        </record> -->
+
+
+    <menuitem id="crypto_main_menu"
+                  name="Crypto"
+                  web_icon = "crypto_module,static/Logo.JPG"
+
+                  sequence="1" />
+
+    <menuitem id="crypto_sub_menu"
+                  name="Crypto Oprations"
+                  
+                  parent = "crypto_main_menu"
+                  sequence="1" />
+
+
+    <record id="crypto_datq_action" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">Crypto User Data</field>
+            <field name="res_model">user.data.crypto</field>
+            <field name="view_mode">form</field>
+            
+            <field name="target">new</field>
+        </record>
+
+
+    <record id="menu_crypto_data_single" model="ir.ui.menu">
+            <field name="name">User Data</field>
+            <field name="sequence" eval="100" />
+            <field name="action" ref="crypto_datq_action" />
+            <field name="parent_id" ref="crypto_sub_menu" />
+        </record>
+
+   
+</odoo>
